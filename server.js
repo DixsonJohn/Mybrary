@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({limit:'10mb', extended: false}))
 
 const indexRouter = require('./routes/index')
 const authorRouter = require('./routes/author')
+const bookRouter = require('./routes/books')
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
@@ -26,6 +27,7 @@ db.once('open',()=>console.log('connected to database'))
 
 app.use('/',indexRouter)
 app.use('/author',authorRouter)
+app.use('/books',bookRouter)
 
 app.listen(process.env.PORT || 3000,()=>{
     console.log('server started!')
